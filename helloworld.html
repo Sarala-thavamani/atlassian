@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@2.0.0/dist/bundle.css" media="all">
+        <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
+    </head>
+    <body>
+        <section id="content" class="ac-content">
+            <h1>Hello World</h1>
+            <p>Welcome to your Atlassian Connect app! Here are some interactive features:</p>
+            
+            <!-- Button 1: Change Background Color -->
+            <button id="change-bg-btn" class="atlaskit-button">Change Background Color</button>
+            
+            <!-- Button 2: Show Date and Time -->
+            <button id="show-date-time-btn" class="atlaskit-button">Show Current Date & Time</button>
+            
+            <!-- Button 3: Fetch API Data -->
+            <button id="fetch-data-btn" class="atlaskit-button">Fetch Dummy Data</button>
+
+            <!-- Placeholder for displaying fetched data -->
+            <div id="data-display" style="margin-top: 20px;"></div>
+            
+            <script>
+                // Button 1: Change Background Color
+                document.getElementById("change-bg-btn").addEventListener("click", function() {
+                    const colors = ["#FFDDC1", "#C1E1DC", "#FFABAB", "#FFC3A0", "#D4E157"];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.style.backgroundColor = randomColor;
+                });
+
+                // Button 2: Show Date and Time
+                document.getElementById("show-date-time-btn").addEventListener("click", function() {
+                    const currentDateTime = new Date().toLocaleString();
+                    alert("Current Date and Time: " + currentDateTime);
+                });
+
+                // Button 3: Fetch Dummy Data (simulated API)
+                document.getElementById("fetch-data-btn").addEventListener("click", function() {
+                    const dummyData = {
+                        name: "John Doe",
+                        role: "Software Engineer",
+                        location: "San Francisco"
+                    };
+
+                    // Display the fetched data
+                    const dataDisplayDiv = document.getElementById("data-display");
+                    dataDisplayDiv.innerHTML = `
+                        <h3>Fetched Data:</h3>
+                        <ul>
+                            <li><strong>Name:</strong> ${dummyData.name}</li>
+                            <li><strong>Role:</strong> ${dummyData.role}</li>
+                            <li><strong>Location:</strong> ${dummyData.location}</li>
+                        </ul>
+                    `;
+                });
+            </script>
+        </section>
+    </body>
+</html>

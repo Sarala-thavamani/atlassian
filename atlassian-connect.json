@@ -1,0 +1,26 @@
+{
+  "name": "my first connect app",
+  "description": "Atlassian Connect app",
+  "key": "hheeelllloooo-world",
+  "baseUrl": "https://46c4-4-247-133-175.ngrok-free.app/",
+  "vendor": {
+    "name": "Example, Inc.",
+    "url": "http://example.com"
+  },
+  "authentication": {
+    "type": "none"
+  },
+  "apiVersion": 1,
+  "modules": {
+    "generalPages": [
+      {
+        "url": "/helloworld.html",
+        "key": "hheeelllloooo-world", 
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "connect"
+        }
+      }
+    ]
+  }
+}
