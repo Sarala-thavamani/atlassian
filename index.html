@@ -1,60 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@2.0.0/dist/bundle.css" media="all">
-        <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
-    </head>
-    <body>
-        <section id="content" class="ac-content">
-            <h1>Hello World</h1>
-            <p>Welcome to your Atlassian Connect app! Here are some interactive features:</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Issue Creator</title>
+</head>
+<body>
+    <h2>Create Jira Issue</h2>
+    
+    <!-- API token input -->
+    <label for="api-token">Enter your Jira API Token:</label>
+    <input type="text" id="api-token" placeholder="Enter your API token">
+    
+    <button id="push-to-jira-btn">Create Jira Issue</button>
+    
+    <script>
+        document.getElementById("push-to-jira-btn").addEventListener("click", function () {
+            // Get the API token input by the user
+            const apiToken = document.getElementById("api-token").value;
             
-            <!-- Button 1: Change Background Color -->
-            <button id="change-bg-btn" class="atlaskit-button">Change Background Color</button>
-            
-            <!-- Button 2: Show Date and Time -->
-            <button id="show-date-time-btn" class="atlaskit-button">Show Current Date & Time</button>
-            
-            <!-- Button 3: Fetch API Data -->
-            <button id="fetch-data-btn" class="atlaskit-button">Fetch Dummy Data</button>
+            if (!apiToken) {
+                alert("Please provide an API token.");
+                return;
+            }
 
-            <!-- Placeholder for displaying fetched data -->
-            <div id="data-display" style="margin-top: 20px;"></div>
-            
-            <script>
-                // Button 1: Change Background Color
-                document.getElementById("change-bg-btn").addEventListener("click", function() {
-                    const colors = ["#FFDDC1", "#C1E1DC", "#FFABAB", "#FFC3A0", "#D4E157"];
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    document.body.style.backgroundColor = randomColor;
+            const authToken = btoa("apiuser@vistrivetech.com:" + apiToken);
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", "Basic " + authToken);
+            myHeaders.append("Cookie", "atlassian.xsrf.token=99a5198e1ef313d231ba9b49bc7abac577da4f27_lin");
+
+            const raw = JSON.stringify({
+                "fields": {
+                    "description": {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "text": "test",
+                                        "type": "text"
+                                    }
+                                ],
+                                "type": "paragraph"
+                            }
+                        ],
+                        "type": "doc",
+                        "version": 1
+                    },
+                    "issuetype": {
+                        "id": "10016" // Update this to the correct issue type ID
+                    },
+                    "project": {
+                        "id": "10005" // Update this to the correct project ID
+                    },
+                    "summary": "test1"
+                }
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            // Send the request to the Jira API
+            fetch("https://cn2.atlassian.net/rest/api/3/issue", requestOptions)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                    }
+                    return response.json(); // Parse JSON response
+                })
+                .then((result) => {
+                    console.log("Issue created successfully:", result);
+                    alert("Issue created successfully with ID: " + result.key);
+                })
+                .catch((error) => {
+                    console.error("Error creating issue:", error);
+                    alert("Failed to create issue. Error: " + error);
                 });
-
-                // Button 2: Show Date and Time
-                document.getElementById("show-date-time-btn").addEventListener("click", function() {
-                    const currentDateTime = new Date().toLocaleString();
-                    alert("Current Date and Time: " + currentDateTime);
-                });
-
-                // Button 3: Fetch Dummy Data (simulated API)
-                document.getElementById("fetch-data-btn").addEventListener("click", function() {
-                    const dummyData = {
-                        name: "John Doe",
-                        role: "Software Engineer",
-                        location: "San Francisco"
-                    };
-
-                    // Display the fetched data
-                    const dataDisplayDiv = document.getElementById("data-display");
-                    dataDisplayDiv.innerHTML = `
-                        <h3>Fetched Data:</h3>
-                        <ul>
-                            <li><strong>Name:</strong> ${dummyData.name}</li>
-                            <li><strong>Role:</strong> ${dummyData.role}</li>
-                            <li><strong>Location:</strong> ${dummyData.location}</li>
-                        </ul>
-                    `;
-                });
-            </script>
-        </section>
-    </body>
+        });
+    </script>
+</body>
 </html>
