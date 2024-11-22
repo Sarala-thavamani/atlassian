@@ -1,87 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jira Issue Creator</title>
+    <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@2.0.0/dist/bundle.css" media="all">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>Create Jira Issue</h2>
-    
-    <!-- API token input -->
-    <label for="api-token">Enter your Jira API Token:</label>
-    <input type="text" id="api-token" placeholder="Enter your API token">
-    
-    <button id="push-to-jira-btn">Create Jira Issue</button>
-    
-    <script>
-        document.getElementById("push-to-jira-btn").addEventListener("click", function () {
-            // Get the API token input by the user
-            const apiToken = document.getElementById("api-token").value;
-            
-            if (!apiToken) {
-                alert("Please provide an API token.");
-                return;
-            }
-
-            const authToken = btoa("apiuser@vistrivetech.com:" + apiToken);
-
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "Basic " + authToken);
-            myHeaders.append("Cookie", "atlassian.xsrf.token=99a5198e1ef313d231ba9b49bc7abac577da4f27_lin");
-
-            const raw = JSON.stringify({
-                "fields": {
-                    "description": {
-                        "content": [
-                            {
-                                "content": [
-                                    {
-                                        "text": "test",
-                                        "type": "text"
-                                    }
-                                ],
-                                "type": "paragraph"
-                            }
-                        ],
-                        "type": "doc",
-                        "version": 1
-                    },
-                    "issuetype": {
-                        "id": "10016" // Update this to the correct issue type ID
-                    },
-                    "project": {
-                        "id": "10005" // Update this to the correct project ID
-                    },
-                    "summary": "test1"
-                }
+    <section id="content" class="ac-content">
+        <h1>Hello World</h1>
+        <p>Welcome to your Atlassian Connect app! Here are some interactive features:</p>
+        
+        <!-- Existing Buttons -->
+        <button id="change-bg-btn" class="atlaskit-button">Change Background Color</button>
+        <button id="show-date-time-btn" class="atlaskit-button">Show Current Date & Time</button>
+        <button id="fetch-data-btn" class="atlaskit-button">Fetch Dummy Data</button>
+        
+        <!-- New Button for Jira -->
+        <button id="push-to-jira-btn" class="atlaskit-button">Push to Jira</button>
+        
+        <!-- Placeholder for displaying fetched data -->
+        <div id="data-display" style="margin-top: 20px;"></div>
+        
+        <script>
+            // Button 1: Change Background Color
+            document.getElementById("change-bg-btn").addEventListener("click", function() {
+                const colors = ["#FFDDC1", "#C1E1DC", "#FFABAB", "#FFC3A0", "#D4E157"];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.style.backgroundColor = randomColor;
             });
 
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
+            // Button 2: Show Date and Time
+            document.getElementById("show-date-time-btn").addEventListener("click", function() {
+                const currentDateTime = new Date().toLocaleString();
+                alert("Current Date and Time: " + currentDateTime);
+            });
 
-            // Send the request to the Jira API
-            fetch("https://cn2.atlassian.net/rest/api/3/issue", requestOptions)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-                    }
-                    return response.json(); // Parse JSON response
-                })
-                .then((result) => {
-                    console.log("Issue created successfully:", result);
-                    alert("Issue created successfully with ID: " + result.key);
-                })
-                .catch((error) => {
-                    console.error("Error creating issue:", error);
-                    alert("Failed to create issue. Error: " + error);
-                });
-        });
-    </script>
+            // Button 3: Fetch Dummy Data (simulated API)
+            document.getElementById("fetch-data-btn").addEventListener("click", function() {
+                const dummyData = {
+                    name: "John Doe",
+                    role: "Software Engineer",
+                    location: "San Francisco"
+                };
+
+                const dataDisplayDiv = document.getElementById("data-display");
+                dataDisplayDiv.innerHTML = `
+                    <h3>Fetched Data:</h3>
+                    <ul>
+                        <li><strong>Name:</strong> ${dummyData.name}</li>
+                        <li><strong>Role:</strong> ${dummyData.role}</li>
+                        <li><strong>Location:</strong> ${dummyData.location}</li>
+                    </ul>
+                `;
+            });
+
+            // Button 4: Push to Jira
+            $("#push-to-jira-btn").on("click", function() {
+                var settings = {
+                    url: "https://cn2.atlassian.net/rest/api/3/issue",
+                    method: "POST",
+                    timeout: 0,
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Basic <your-auth-token>", // Replace <your-auth-token> with your actual token
+                        Cookie: "atlassian.xsrf.token=8d12f706540d8bb3e720829ecda786b59373f8f3_lin"
+                    },
+                    data: JSON.stringify({
+                        fields: {
+                            description: {
+                                content: [
+                                    {
+                                        content: [
+                                            {
+                                                text: "test",
+                                                type: "text"
+                                            }
+                                        ],
+                                        type: "paragraph"
+                                    }
+                                ],
+                                type: "doc",
+                                version: 1
+                            },
+                            issuetype: {
+                                id: "10016" // Replace with your issue type ID
+                            },
+                            project: {
+                                id: "10005" // Replace with your project ID
+                            },
+                            summary: "test task"
+                        }
+                    })
+                };
+
+                $.ajax(settings)
+                    .done(function(response) {
+                        console.log("Issue created successfully:", response);
+                        alert("Issue created successfully with ID: " + response.id);
+                    })
+                    .fail(function(xhr, status, error) {
+                        console.error("Failed to create issue:", error);
+                        alert("Failed to create issue. Error: " + xhr.responseText);
+                    });
+            });
+
+            // Optional: Context menu for Push to Jira button
+            $("#push-to-jira-btn").on("contextmenu", function(e) {
+                e.preventDefault(); // Prevent default context menu
+                alert("Custom context menu triggered!");
+            });
+        </script>
+    </section>
 </body>
 </html>
