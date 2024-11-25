@@ -2,13 +2,20 @@
   "name": "My First Connect App",
   "description": "Atlassian Connect app",
   "key": "my-first-connect-app",  
-  "baseUrl": "https://sarala-thavamani.github.io/atlassian",
+  "baseUrl": "", 
   "vendor": {
     "name": "Example, Inc.",
-    "url": "https://example.com"
+    "url": "https://sarala-thavamani.github.io/atlassian"
   },
   "authentication": {
-    "type": "none"
+    "type": "oauth2",
+    "clientId": "3rjOfc5P3B7QKoUK5ECRkaxeIPvpP7O3",
+    "clientSecret": "ATOAZEhK_Ua9D0F1Qft-1CVdX7wnIyY2enJuN8VspGENPiEe1K4aVqRCiOmyPczTbonv8DB22D28",
+    "scopes": [
+      "read:jira-user",
+      "write:jira-task"
+    ],
+    "redirectUri": "http://127.0.0.1:8000/oauth2/callback"
   },
   "apiVersion": 1,
   "modules": {
