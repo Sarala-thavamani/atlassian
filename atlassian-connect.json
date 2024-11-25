@@ -8,7 +8,7 @@
     "url": "https://sarala-thavamani.github.io/atlassian"
   },
   "authentication": {
-    "type": "oauth2",
+    "type": "jwt",
     "clientId": "3rjOfc5P3B7QKoUK5ECRkaxeIPvpP7O3",
     "clientSecret": "ATOAZEhK_Ua9D0F1Qft-1CVdX7wnIyY2enJuN8VspGENPiEe1K4aVqRCiOmyPczTbonv8DB22D28",
     "scopes": [
