@@ -1,8 +1,8 @@
 {
-  "name": "my first connect app",
+  "name": "My First Connect App",
   "description": "Atlassian Connect app",
-  "key": "com.example.myapp",
-  "baseUrl": "https://sarala-thavamani.github.io/atlassian/",
+  "key": "my-first-connect-app",  
+  "baseUrl": "https://sarala-thavamani.github.io/atlassian",
   "vendor": {
     "name": "Example, Inc.",
     "url": "http://example.com"
@@ -15,10 +15,10 @@
     "generalPages": [
       {
         "url": "/index.html",
-        "key": "com.example.myapp", 
+        "key": "example-page",
         "location": "system.top.navigation.bar",
         "name": {
-          "value": "connect"
+          "value": "Connect"
         }
       }
     ]
