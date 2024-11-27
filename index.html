@@ -18,6 +18,9 @@
             <!-- Button 3: Fetch API Data -->
             <button id="fetch-data-btn" class="atlaskit-button">Fetch Dummy Data</button>
 
+            <!-- Button 4: Application UI -->
+            <button id="application-ui-btn" class="atlaskit-button">Application UI</button>
+
             <!-- Placeholder for displaying fetched data -->
             <div id="data-display" style="margin-top: 20px;"></div>
             
@@ -53,6 +56,11 @@
                             <li><strong>Location:</strong> ${dummyData.location}</li>
                         </ul>
                     `;
+                });
+
+                // Button 4: Open Application UI URL
+                document.getElementById("application-ui-btn").addEventListener("click", function() {
+                    window.open("http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/", "_blank");
                 });
             </script>
         </section>
