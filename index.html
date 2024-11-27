@@ -32,24 +32,13 @@
 
   <script>
     document.querySelector('.try-demo-btn').addEventListener('click', () => {
-  const externalUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
+  const targetUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
 
-  try {
-    // Check if running inside Jira
-    if (typeof AP !== 'undefined' && AP.navigator) {
-      AP.navigator.openWindow({
-        url: externalUrl,
-        width: 1024,
-        height: 768
-      });
-    } else {
-      // Fallback for local testing
-      console.log("Redirecting locally to:", externalUrl);
-      window.location.href = externalUrl;
-    }
-  } catch (error) {
-    console.error("Error during redirection:", error);
-    alert("Failed to redirect. Please check the console for errors.");
+  if (typeof AP !== 'undefined' && AP.navigator) {
+    AP.navigator.go('web', { url: targetUrl }); // Use 'go' instead of 'openWindow'
+  } else {
+    // Fallback for local testing
+    window.location.href = targetUrl;
   }
 });
   </script>
