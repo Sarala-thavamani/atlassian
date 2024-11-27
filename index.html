@@ -32,15 +32,16 @@
 
   <script>
     document.querySelector('.try-demo-btn').addEventListener('click', () => {
-  const targetUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
+      const targetUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
 
-  if (typeof AP !== 'undefined' && AP.navigator) {
-    AP.navigator.go('web', { url: targetUrl }); // Use 'go' instead of 'openWindow'
-  } else {
-    // Fallback for local testing
-    window.location.href = targetUrl;
-  }
-});
+      // Check if the Atlassian Connect API is loaded and functional
+      if (typeof AP !== 'undefined' && AP.navigator && AP.navigator.go) {
+        AP.navigator.go('web', { url: targetUrl }); // Redirect using Atlassian Connect API
+      } else {
+        // Fallback for environments where AP is not available (e.g., local testing)
+        window.location.href = targetUrl;
+      }
+    });
   </script>
 </body>
 </html>
