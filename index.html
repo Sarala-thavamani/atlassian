@@ -1,68 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@2.0.0/dist/bundle.css" media="all">
-        <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
-    </head>
-    <body>
-        <section id="content" class="ac-content">
-            <h1>Hello World</h1>
-            <p>Welcome to your Atlassian Connect app! Here are some interactive features:</p>
-            
-            <!-- Button 1: Change Background Color -->
-            <button id="change-bg-btn" class="atlaskit-button">Change Background Color</button>
-            
-            <!-- Button 2: Show Date and Time -->
-            <button id="show-date-time-btn" class="atlaskit-button">Show Current Date & Time</button>
-            
-            <!-- Button 3: Fetch API Data -->
-            <button id="fetch-data-btn" class="atlaskit-button">Fetch Dummy Data</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CN2 - AI Assisted Requirements Co Pilot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-            <!-- Button 4: Application UI -->
-            <button id="application-ui-btn" class="atlaskit-button">Application UI</button>
+  <main>
+    <section class="hero">
+      <h1>CN2</h1>
+      <p class="hero-description">AI Assisted Requirements Co Pilot</p>
+      <p class="hero-tagline">Disrupt your requirement management process with actionable intelligence through CN2 requirements co-pilot.</p>
+      <a href="#" class="try-demo-btn">Try Demo</a>
+    </section>
+    <section class="features">
+      <!-- Add feature content here -->
+    </section>
 
-            <!-- Placeholder for displaying fetched data -->
-            <div id="data-display" style="margin-top: 20px;"></div>
-            
-            <script>
-                // Button 1: Change Background Color
-                document.getElementById("change-bg-btn").addEventListener("click", function() {
-                    const colors = ["#FFDDC1", "#C1E1DC", "#FFABAB", "#FFC3A0", "#D4E157"];
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    document.body.style.backgroundColor = randomColor;
-                });
+    <section class="services">
+      <!-- Add services content here -->
+    </section>
+  </main>
 
-                // Button 2: Show Date and Time
-                document.getElementById("show-date-time-btn").addEventListener("click", function() {
-                    const currentDateTime = new Date().toLocaleString();
-                    alert("Current Date and Time: " + currentDateTime);
-                });
+  <footer>
+    <p>&copy; 2023 CN2. All rights reserved.</p>
+  </footer>
 
-                // Button 3: Fetch Dummy Data (simulated API)
-                document.getElementById("fetch-data-btn").addEventListener("click", function() {
-                    const dummyData = {
-                        name: "John Doe",
-                        role: "Software Engineer",
-                        location: "San Francisco"
-                    };
-
-                    // Display the fetched data
-                    const dataDisplayDiv = document.getElementById("data-display");
-                    dataDisplayDiv.innerHTML = `
-                        <h3>Fetched Data:</h3>
-                        <ul>
-                            <li><strong>Name:</strong> ${dummyData.name}</li>
-                            <li><strong>Role:</strong> ${dummyData.role}</li>
-                            <li><strong>Location:</strong> ${dummyData.location}</li>
-                        </ul>
-                    `;
-                });
-
-                // Button 4: Open Application UI URL
-                document.getElementById("application-ui-btn").addEventListener("click", function() {
-                    window.open("http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/", "_blank");
-                });
-            </script>
-        </section>
-    </body>
+  <script>
+    document.querySelector('.try-demo-btn').addEventListener('click', () => {
+  window.location.replace('http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement');
+});
+  </script>
+</body>
 </html>
