@@ -3,14 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://*.atlassian.net;">
   <title>CN2 - AI Assisted Requirements Co Pilot</title>
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Using GitHub hosted CSS over HTTPS -->
-  <link rel="stylesheet" href="https://sarala-thavamani.github.io/atlassian/styles.css">
-
-  <!-- Atlassian Connect JS CDN -->
   <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
 </head>
 <body>
@@ -28,15 +22,7 @@
       <h1>CN2</h1>
       <p class="hero-description">AI Assisted Requirements Co Pilot</p>
       <p class="hero-tagline">Disrupt your requirement management process with actionable intelligence through CN2 requirements co-pilot.</p>
-      <a href="#" class="try-demo-btn">Try Demo</a>
-    </section>
-
-    <section class="features">
-      <!-- Add feature content here -->
-    </section>
-
-    <section class="services">
-      <!-- Add services content here -->
+      <button class="try-demo-btn">Try Demo</button>
     </section>
   </main>
 
@@ -44,11 +30,28 @@
     <p>&copy; 2023 CN2. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript to handle demo button click -->
   <script>
     document.querySelector('.try-demo-btn').addEventListener('click', () => {
-      window.location.replace('http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement');
-    });
+  const externalUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
+
+  try {
+    // Check if running inside Jira
+    if (typeof AP !== 'undefined' && AP.navigator) {
+      AP.navigator.openWindow({
+        url: externalUrl,
+        width: 1024,
+        height: 768
+      });
+    } else {
+      // Fallback for local testing
+      console.log("Redirecting locally to:", externalUrl);
+      window.location.href = externalUrl;
+    }
+  } catch (error) {
+    console.error("Error during redirection:", error);
+    alert("Failed to redirect. Please check the console for errors.");
+  }
+});
   </script>
 </body>
 </html>

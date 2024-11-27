@@ -22,5 +22,11 @@
         }
       }
     ]
-  }
+  },
+  "whitelistedServices": [
+    {
+      "key": "cn2-requirement-service",
+      "url": "http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/"
+    }
+  ]
 }
