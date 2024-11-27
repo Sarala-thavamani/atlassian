@@ -36,10 +36,11 @@
 
       // Check if the Atlassian Connect API is loaded and functional
       if (typeof AP !== 'undefined' && AP.navigator && AP.navigator.go) {
-        AP.navigator.go('web', { url: targetUrl }); // Redirect using Atlassian Connect API
+        // For Jira, open the URL in a new tab using window.open
+        window.open(targetUrl, '_blank');
       } else {
-        // Fallback for environments where AP is not available (e.g., local testing)
-        window.location.href = targetUrl;
+        // Fallback for local testing or non-Jira environments
+        window.open(targetUrl, '_blank');
       }
     });
   </script>
