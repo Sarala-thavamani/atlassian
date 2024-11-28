@@ -1,48 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CN2 - AI Assisted Requirements Co Pilot</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://connect-cdn.atl-paas.net/all.js" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CN2 - AI Assisted Requirements Co Pilot</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-    </nav>
+    <!-- Header -->
+    <header>
+      <div class="navbar">
+          <!-- Logo Image -->
+          <a href="#" class="logo">
+              <img src="https://cn-2.io/assets/img/CN2%20Logo.png" alt="CN2 Logo" class="logo-img">
+          </a>
+      </div>
   </header>
-
-  <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <h1>CN2</h1>
-      <p class="hero-description">AI Assisted Requirements Co Pilot</p>
-      <p class="hero-tagline">Disrupt your requirement management process with actionable intelligence through CN2 requirements co-pilot.</p>
-      <button class="try-demo-btn">Try Demo</button>
+        <h1>CN2</h1>
+        <p>AI Assisted Requirements Co Pilot</p>
+        <p>Disrupt your requirement management process with actionable intelligence through CN2 requirements co-pilot.</p>
+        <a href="#" class="cta-btn try-demo-btn">Try Demo</a>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2023 CN2. All rights reserved.</p>
-  </footer>
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Our Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>Automated Requirements Management</h3>
+                <p>CN2 automates the entire requirements management process, from capturing requirements to generating user stories and tracking development progress.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Natural Language Processing (NLP)</h3>
+                <p>CN2 leverages NLP to interpret and analyze user requirements, allowing for more efficient and accurate management of requirements.</p>
+            </div>
+            <div class="feature-item">
+                <h3>AI-Powered Knowledge Model</h3>
+                <p>CN2 creates an enterprise knowledge model that is specific to an organization, providing a centralized repository of knowledge for managing requirements.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Domain-Specific Ontology</h3>
+                <p>CN2 uses a domain-specific ontology to standardize the language and concepts used to manage requirements, improving collaboration and reducing errors.</p>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    document.querySelector('.try-demo-btn').addEventListener('click', () => {
-      const targetUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <h3>Digitization Services</h3>
+                <ul>
+                    <li>Enterprise knowledge model training</li>
+                    <li>Customized workflows development</li>
+                    <li>Ontology development</li>
+                    <li>Integration services</li>
+                </ul>
+            </div>
+            <div class="service-item">
+                <h3>Consulting Services</h3>
+                <ul>
+                    <li>Requirement management consulting</li>
+                    <li>Business analysis</li>
+                    <li>Process improvement consulting</li>
+                    <li>Project management consulting</li>
+                </ul>
+            </div>
+            <div class="service-item">
+                <h3>AI-Assisted Services</h3>
+                <ul>
+                    <li>Productivity tracking and resource utilization</li>
+                    <li>Algo-driven future of work</li>
+                    <li>Personalized workflows</li>
+                    <li>Rating and recommendations</li>
+                </ul>
+            </div>
+            <div class="service-item">
+                <h3>Implementation Services</h3>
+                <ul>
+                    <li>CN2 implementation and configuration</li>
+                    <li>Migration from existing tools to CN2</li>
+                    <li>Integration with ALM tools</li>
+                    <li>User training and onboarding</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-      // Check if the Atlassian Connect API is loaded and functional
-      if (typeof AP !== 'undefined' && AP.navigator && AP.navigator.go) {
-        // For Jira, open the URL in a new tab using window.open
-        window.open(targetUrl, '_blank');
-      } else {
-        // Fallback for local testing or non-Jira environments
-        window.open(targetUrl, '_blank');
-      }
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CN2. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Try Demo Button -->
+    <script>
+      document.querySelector('.try-demo-btn').addEventListener('click', () => {
+        const targetUrl = 'http://pip-cn2devsvr-vnet-centralindia-default.centralindia.cloudapp.azure.com:4215/#/dashboards/requirement';
+
+        // Check if the Atlassian Connect API is loaded and functional
+        if (typeof AP !== 'undefined' && AP.navigator && AP.navigator.go) {
+          // For Jira, open the URL in a new tab using window.open
+          window.open(targetUrl, '_blank');
+        } else {
+          // Fallback for local testing or non-Jira environments
+          window.open(targetUrl, '_blank');
+        }
+      });
+    </script>
 </body>
 </html>
